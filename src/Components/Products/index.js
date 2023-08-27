@@ -1,35 +1,18 @@
+import { useDispatch,useSelector } from 'react-redux';
+import {useEffect} from 'react';
 import './_products.scss';
+import ProductSlice from '../../Redux/Product/productSlice';
+import {getProducts} from '../../Redux/Product/productAction';
 
 const Products = () => {
 
-    const productData =[
-        {
-            pName:"Jacket",
-            price:45,
-            img:"shop-1.png"
-        },
-        {
-            pName:"Shoes",
-            price:50,
-            img:"shop-2.png"
-        },
-        {
-            pName:"Bag",
-            price:100,
-            img:"shop-3.png"
-        },
-        {
-            pName:"Aviators",
-            price:200,
-            img:"shop-4.png"
-        },
-        {
-            pName:"Denim",
-            price:70,
-            img:"shop-5.png"
-        }
-    ]
+    const productData = useSelector(state => state.productReducer.products);
+    const dispatch = useDispatch();
     
+    useEffect(()=>{
+      dispatch(getProducts())
+    },[])
+
     return(
         <div className='products-container'>
             {
@@ -39,12 +22,12 @@ const Products = () => {
                         <div className="product-image-container">
                           <img
                             className="images"
-                            src={require("../../Assets/" + product.img)}
+                            src={require("../../Assets/" + product.product_img)}
                           ></img>
                         </div>
                         <div className="product-info">
                           <h5>
-                            <a href="#">{product.pName}</a>
+                            <a href="#">{product.product_name}</a>
                           </h5>
                           <p className="product-price">${product.price}</p>
                           <div className="product-rating">
