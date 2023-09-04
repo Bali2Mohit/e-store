@@ -31,5 +31,10 @@
                 @include underline-transition(0.5)
             }
         }
-    }    
+    }  
+    .price-filter-container{
+        display: flex;
+        flex-direction: coloumn;
+        justify-content: space-around;
+    }  
 }
